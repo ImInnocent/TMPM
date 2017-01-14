@@ -1,0 +1,6 @@
+TMPM/Library/
+TMPM/obj/
+TMPM/ProjectSettings/
+*.csproj
+*.sln
+*.useprefs
