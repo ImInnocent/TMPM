@@ -1,6 +1,6 @@
 Library/
 obj/
 ProjectSettings/
-TMPM/*.csproj
-TMPM/*.sln
-TMPM/*.useprefs
+*.csproj
+*.sln
+*.useprefs
