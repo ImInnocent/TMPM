@@ -3,4 +3,4 @@ obj/
 ProjectSettings/
 *.csproj
 *.sln
-*.useprefs
+*.userprefs
