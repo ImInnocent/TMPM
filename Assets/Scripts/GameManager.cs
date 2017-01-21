@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		CreatePlayer ();
 		CreateEnemy ();
+		CreateTower ();
 	}
 
 	void CreatePlayer(){
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour {
 		Rigidbody2D body = player.AddComponent<Rigidbody2D>();
 		SpriteRenderer spr = player.AddComponent<SpriteRenderer>();
 		Character cha = player.AddComponent<Character> ();
+		player.AddComponent<MControlModule> ();
 
 		//set <Rigidbody2D>
 		body.gravityScale = 0f;
@@ -56,6 +58,31 @@ public class GameManager : MonoBehaviour {
 
 		//set <SpriteRenderer>
 		Sprite image = Resources.Load<Sprite>("Sprites/monster");
+		spr.sprite = image != null ? image : null;
+
+		//set <Character>
+		cha.SetStat(CharTags.Enemy, new CharStat(10f, 3f));
+	}
+
+	void CreateTower(){
+		GameObject monster = new GameObject ("tower");
+
+		monster.transform.SetParent (enemy.transform);
+
+		//attach component
+		monster.AddComponent<MoveModule>();
+		monster.AddComponent<AIModule>();
+		monster.AddComponent<ClipModule>();
+		Rigidbody2D body = monster.AddComponent<Rigidbody2D>();
+		SpriteRenderer spr = monster.AddComponent<SpriteRenderer>();
+		Character cha = monster.AddComponent<Character> ();
+
+		//set <Rigidbody2D>
+		body.gravityScale = 0f;
+		body.drag = 1f;
+
+		//set <SpriteRenderer>
+		Sprite image = Resources.Load<Sprite>("Sprites/tower");
 		spr.sprite = image != null ? image : null;
 
 		//set <Character>

@@ -38,4 +38,15 @@ public class MoveModule : MonoBehaviour {
 			rigid.AddForce (vec * speed);
 		}
 	}
+
+	public void Move(Vector2 dir){
+		if (rigid == null) {
+			rigid = GetComponent<Rigidbody2D> ();
+		}
+
+		if (rigid != null) {
+
+			rigid.AddForce (dir * speed);
+		}
+	}
 }

@@ -22,13 +22,12 @@ public class AIModule : MonoBehaviour {
 		}
 
 		if (target != null && timer <= 0f) {
-			Transform[] children = target.GetComponentsInChildren<Transform> ();
+			Character[] children = target.GetComponentsInChildren<Character> ();
 
 			for (int i = 0; i < children.Length; i++) {
-				float dis = Vector2.Distance (children [i].position, transform.position);
-				Character cha = children [i].GetComponent<Character> ();
+				float dis = Vector2.Distance (children [i].transform.position, transform.position);
 
-				if (dis < 5f && cha != null) {
+				if (dis < 5f) {
 					Debug.Log (name + " -> " + children [i].name);
 					CreateArrow (children[i].gameObject);
 					timer = maxTimer;
@@ -61,5 +60,15 @@ public class AIModule : MonoBehaviour {
 		//set <Transform>
 		proj.transform.position = transform.position;
 
+	}
+
+	public void ResetTarget(){
+		Character cha = GetComponent<Character> ();
+
+		CharTags tag = cha != null ? cha.charTag : CharTags.None;
+
+		if (tag != CharTags.None) {
+			target = GameObject.Find (tag == CharTags.Ally ? "Enemy" : "Ally");
+		}
 	}
 }
